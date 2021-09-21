@@ -12,27 +12,36 @@ function App() {
   const [contacts, setContacts] = useState(initialArr);
 
   const contactsList = contacts.map(contact => (
-    <tr>
-      <img src={contact.pictureUrl} height='120px'></img>
+    <tr key={contact.id}>
+      <td><img src={contact.pictureUrl} height='120px'></img></td>
       <td>{contact.name}</td>
       <td>{contact.popularity.toFixed(2)}</td>
+      <td>{contact.wonOscar && ' 🏆 '}</td>
+      <td>{contact.wonEmmy && ' 🏅 '}</td>
     </tr>
   ))
 
   return (
     <div className="App">
       <h1>IronContacts</h1>
+      
       <table>
-        <tr>
-          <th>Picture</th>
-          <th>Name</th>
-          <th>Popularity</th>
-        </tr>
-        {contactsList}
+        <thead>
+          <tr>
+            <th>Picture</th>
+            <th>Name</th>
+            <th>Popularity</th>
+            <th>Won Oscar</th>
+            <th>Won Emmy</th>
+          </tr>
+        </thead>
+        <tbody>
+          {contactsList}
+        </tbody>
       </table>
+
     </div>
   );
 }
 
 export default App;
-  
